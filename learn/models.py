@@ -6,7 +6,9 @@ class Course(models.Model):
     title = models.CharField(max_length=50)
     description = models.TextField(max_length=350)
     course_image = models.CharField(max_length=250)
-    category = models.TextChoices('Category', 'Computing, Math, Science, English')
+    SubjectType = models.TextChoices('SubjectType', 'Computing, Math, Science, English')
+    name = models.CharField(max_length=60)
+    subject = models.CharField(blank=True, choices=SubjectType.choices, max_length=10)
 
     def __str__(self):
         return f'{self.title}'
@@ -40,3 +42,10 @@ class Comment(models.Model):
 
     def __str__(self):
         return f'Comment {self.id} on {self.lesson}'
+
+
+class Assessment(models.Model):
+    name = models.CharField(max_length=50)
+
+    def __str__(self):
+        return f'{self.name}'
