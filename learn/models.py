@@ -1,4 +1,6 @@
 from django.db import models
+from django.contrib.postgres.fields import ArrayField
+
 # from django.db.models.deletion import CASCADE
 
 # Create your models here.
@@ -46,6 +48,45 @@ class Comment(models.Model):
 
 class Assessment(models.Model):
     name = models.CharField(max_length=50)
+    
+    lesson = models.OneToOneField(
+        Lesson,
+        related_name="assessment",
+        on_delete=models.CASCADE,
+    )
+    def __str__(self):
+        return f'{self.name}-{self.lesson}'
+
+
+class Question(models.Model):
+    assessment = models.ForeignKey(
+        Assessment,
+        related_name="questions",
+        on_delete=models.CASCADE
+    )
+    question = models.CharField(max_length=250)
 
     def __str__(self):
-        return f'{self.name}'
+        return f'{self.question}'
+    # correct_answers = ArrayField(models.CharField(max_length=15), null=True, blank=True)
+    # incorrect_answers = ArrayField(models.CharField(max_length=15), null=True, blank=True)
+
+
+class Answer(models.Model):
+    answer = models.CharField(max_length=250)
+    is_correct = models.BooleanField(default=False)
+    question = models.ForeignKey(
+        Question,
+        related_name="answers", 
+        on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f'{self.answer}'
+
+
+class Result(models.Model):
+    assessment = models.ForeignKey(Assessment, on_delete=models.CASCADE)
+    score = models.FloatField()
+
+    def __str__(self):
+        return f'result: {self.score}'

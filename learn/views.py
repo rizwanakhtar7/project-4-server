@@ -3,10 +3,15 @@ from rest_framework.views import APIView
 from rest_framework.response import Response 
 from rest_framework import serializers, status
 
-from .models import Course, Lesson
-from .serializers import CourseSerializer,LessonSerializer,PopulatedCourseSerializer,PopulatedLessonSerializer
+from .models import Assessment, Course, Lesson
+from .serializers import CourseSerializer,LessonSerializer,PopulatedCourseSerializer,PopulatedLessonSerializer, AssessmentSerializer
 
- 
+class AssessmentListView(APIView):
+    
+    def get(self, _request):
+        assessments = Assessment.objects.all()
+        serialized_assessments = AssessmentSerializer(assessments, many=True)
+        return Response(serialized_assessments.data, status=status.HTTP_200_OK)
 
 
 class CourseListView(APIView):
