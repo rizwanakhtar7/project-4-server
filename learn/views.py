@@ -24,7 +24,7 @@ class CourseListView(APIView):
             return Response(new_course.data,  status=status.HTTP_201_CREATED)
         return Response(new_course.errors, status=status.HTTP_422_UNPROCESSABLE_ENTITY)
 
-class CourseDetailListView(APIView):
+class CourseDetailView(APIView):
     def get_course(self, pk):
         try:
             return Course.objects.get(pk=pk)
@@ -44,7 +44,7 @@ class CourseDetailListView(APIView):
             return Response(updated_course.data, status=status.HTTP_202_ACCEPTED)
         return Response(updated_course.errors, status=status.HTTP_422_UNPROCESSABLE_ENTITY)
     
-    def delete(self, request, pk):
+    def delete(self, _request, pk):
         course_to_delete = self.get_course(pk=pk)
         course_to_delete.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
