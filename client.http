@@ -1,0 +1,9 @@
+GET http://127.0.0.1:8000/api/courses/1/
+
+###
+POST http://127.0.0.1:8000/api/courses/1/lessons/1/comments/
+Content-Type: application/json
+
+{
+
+}

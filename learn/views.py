@@ -4,7 +4,7 @@ from rest_framework.response import Response
 from rest_framework import serializers, status
 
 from .models import Course, Lesson
-from .serializers import CourseSerializer,LessonSerializer,PopulatedCourseSerializer
+from .serializers import CourseSerializer,LessonSerializer,PopulatedCourseSerializer,PopulatedLessonSerializer
 
  
 
