@@ -1,7 +1,32 @@
-GET http://127.0.0.1:8000/api/courses/1/
+# GET ALL COURSES
+GET http://localhost:8000/api/courses
 
 ###
-GET http://127.0.0.1:8000/assessments/
+
+# GET A SINGLE COUTSE
+GET http://localhost:8000/api/courses/1/
+
+###
+
+# POST A NEW COURSE
+POST http://localhost:8000/api/courses/
+Content-Type: application/json
+
+{
+  "title": "Math 101",
+  "description": "The fundamentals of Math",
+  "courseImage": "image.jpg",
+  "name": "Math",
+  "subject": "Math"
+}
+
+###
+
+# GET ALL ASSESSMENTS
+GET http://localhost:8000/assessments/
 
 ### GET a Single Assessment
-GET http://127.0.0.1:8000/api/courses/1/assessments/1/
+GET http://localhost:8000/assessments/1/
+
+###
+GET http://localhost:8000/api/courses/1/assessments/1

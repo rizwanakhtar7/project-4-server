@@ -1,18 +1,22 @@
 from rest_framework.exceptions import NotFound
-from rest_framework.views import APIView 
-from rest_framework.response import Response 
-from rest_framework import serializers, status
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework import status
 
-from .models import Assessment, Course, Lesson
-from .serializers import CourseSerializer,LessonSerializer,PopulatedCourseSerializer,PopulatedLessonSerializer, AssessmentSerializer
+from .models import Assessment, Course
+from .serializers import (
+    CourseSerializer,
+    PopulatedCourseSerializer,
+    AssessmentSerializer
+)
 
-class AssessmentListView(APIView):
-    
-    def get(self, _request):
-        assessments = Assessment.objects.all()
+class AssessmentDetailView(APIView):
+
+    def get(self, _request, assessment_pk):
+
+        assessments = Assessment.objects.get(pk=assessment_pk)
         serialized_assessments = AssessmentSerializer(assessments, many=True)
         return Response(serialized_assessments.data, status=status.HTTP_200_OK)
-
 
 class CourseListView(APIView):
 
@@ -30,6 +34,7 @@ class CourseListView(APIView):
         return Response(new_course.errors, status=status.HTTP_422_UNPROCESSABLE_ENTITY)
 
 class CourseDetailView(APIView):
+
     def get_course(self, pk):
         try:
             return Course.objects.get(pk=pk)
