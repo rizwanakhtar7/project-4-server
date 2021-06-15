@@ -3,8 +3,9 @@ from rest_framework.views import APIView
 from rest_framework.response import Response 
 from rest_framework import serializers, status
 
-from .models import Assessment, Course, Lesson
-from .serializers import CourseSerializer,LessonSerializer,PopulatedCourseSerializer,PopulatedLessonSerializer, AssessmentSerializer
+from .models import Assessment, Comment, Course, Lesson
+from .serializers import CommentSerializer, CourseSerializer,LessonSerializer,PopulatedCourseSerializer,PopulatedLessonSerializer, AssessmentSerializer
+
 
 class AssessmentListView(APIView):
     
@@ -36,8 +37,11 @@ class CourseDetailView(APIView):
         except Course.DoesNotExist:
             raise NotFound()
 
-    def get(self, _request, pk):
+    def get(self, request, pk):
         course = self.get_course(pk=pk)
+        query = request.GET.items()
+        
+        print(list(query))
         serialized_course = PopulatedCourseSerializer(course)
         return Response(serialized_course.data, status=status.HTTP_200_OK)
     
@@ -54,3 +58,30 @@ class CourseDetailView(APIView):
         course_to_delete.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
 
+class CommentListView(APIView):
+
+    def get(self, _request):
+        lessons = Course.objects.all()
+        serialized_lessons = PopulatedCourseSerializer(lessons, many=True)
+        return Response(serialized_lessons.data, status=status.HTTP_200_OK)
+
+    def post(self, request, lesson_id):
+        request.data['lesson'] = lesson_id
+        serialized_comment = CommentSerializer(data=request.data)
+        if serialized_comment.is_valid():
+            serialized_comment.save()
+            return Response(serialized_comment.data, status=status.HTTP_201_CREATED)
+        return Response(serialized_comment.errors, status=status.HTTP_422_UNPROCESSABLE_ENTITY)
+
+    
+    def delete(self, _request, lesson_id, comment_id):
+        try:
+            comment_to_delete = Comment.objects.get(pk=comment_id)
+            comment_to_delete.delete()
+            return Response(status=status.HTTP_204_NO_CONTENT)
+
+        except Comment.DoesNotExist:
+            raise NotFound()
+
+
+      
