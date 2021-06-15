@@ -70,8 +70,8 @@ class CommentListView(APIView):
         serialized_lessons = PopulatedCourseSerializer(lessons, many=True)
         return Response(serialized_lessons.data, status=status.HTTP_200_OK)
 
-    def post(self, request, lesson_id):
-        request.data['lesson'] = lesson_id
+    def post(self, request, lesson_pk):
+        request.data['lesson'] = lesson_pk
         serialized_comment = CommentSerializer(data=request.data)
         if serialized_comment.is_valid():
             serialized_comment.save()
