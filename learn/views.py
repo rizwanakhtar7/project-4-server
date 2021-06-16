@@ -100,16 +100,19 @@ class LessonDetailListView(APIView):
 
     ### POST A LESSON on course ID
     def post(self, request, pk):
-        request.data['course'] = pk
-        serialized_lesson = LessonSerializer(data=request.data)
-        if serialized_lesson.is_valid():
-            serialized_lesson.save()
-            return Response(serialized_lesson.data, status=status.HTTP_201_CREATED)
-        return Response(serialized_lesson.errors, status=status.HTTP_422_UNPROCESSABLE_ENTITY)     
-    
+        if request.user.role == "INS":
+            request.data['course'] = pk
+            serialized_lesson = LessonSerializer(data=request.data)
+            if serialized_lesson.is_valid():
+                serialized_lesson.save()
+                return Response(serialized_lesson.data, status=status.HTTP_201_CREATED)
+            return Response(serialized_lesson.errors, status=status.HTTP_422_UNPROCESSABLE_ENTITY)     
+        return Response(status=status.HTTP_401_UNAUTHORIZED)
+
     ### Delete A LESSON on course ID
     def delete(self, _request, pk, lesson_pk):
         try:
+
             lesson_to_delete = Lesson.objects.get(pk=lesson_pk)
             print(lesson_to_delete)
             lesson_to_delete.delete()
@@ -120,12 +123,15 @@ class LessonDetailListView(APIView):
 
 
     def put(self, request, pk, lesson_pk):
-        lesson_to_update = self.get_lesson(pk=lesson_pk)
-        updated_lesson = LessonSerializer(lesson_to_update, data=request.data)
-        if updated_lesson.is_valid():
-            updated_lesson.save()
-            return Response(updated_lesson.data, status=status.HTTP_202_ACCEPTED)
-        return Response(updated_lesson.errors, status=status.HTTP_422_UNPROCESSABLE_ENTITY)
+        if request.user.role == "INS":
+
+            lesson_to_update = self.get_lesson(pk=lesson_pk)
+            updated_lesson = LessonSerializer(lesson_to_update, data=request.data)
+            if updated_lesson.is_valid():
+                updated_lesson.save()
+                return Response(updated_lesson.data, status=status.HTTP_202_ACCEPTED)
+            return Response(updated_lesson.errors, status=status.HTTP_422_UNPROCESSABLE_ENTITY)
+        return Response(status=status.HTTP_401_UNAUTHORIZED)
 
         
 class AssessmentDetailView(APIView):

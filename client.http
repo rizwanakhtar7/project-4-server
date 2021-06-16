@@ -1,18 +1,18 @@
 # GET ALL COURSES
 GET http://localhost:8000/api/courses
-Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjE5LCJleHAiOjE2MjQ0NjA2MTN9.6S4DAOXzugnsuIknmSR6bFJvpST7cFtWoa0Eqx54F9U
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjMsImV4cCI6MTYyNDQ2NTEzN30.3qQAbx4AQnGaN8L0RwU_MCeNY7WEtlxXh0m95hJ7mts
 
 ###
 
 # GET A SINGLE COUTSE
 GET http://localhost:8000/api/courses/1/
-Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjIsImV4cCI6MTYyNDQ0NzYxMn0.v9bIhnXdN9ZfaC9meE29QGmDeTFsZ0mRX_WiwDmYq9U
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjMsImV4cCI6MTYyNDQ2NTEzN30.3qQAbx4AQnGaN8L0RwU_MCeNY7WEtlxXh0m95hJ7mts
 
 ###
 
 # POST A NEW COURSE
 POST http://localhost:8000/api/courses/
-Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjQsImV4cCI6MTYyNDQzOTM5MH0.-YDYMm-3VGF-Jvw25A89tV0i71wVLYo1L0hit5T8h10
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjMsImV4cCI6MTYyNDQ2NTEzN30.3qQAbx4AQnGaN8L0RwU_MCeNY7WEtlxXh0m95hJ7mts
 Content-Type: application/json
 
 {
@@ -25,14 +25,16 @@ Content-Type: application/json
 
 ###
 GET http://localhost:8000/api/courses/1/assessments/
-Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjIsImV4cCI6MTYyNDQ0NzYxMn0.v9bIhnXdN9ZfaC9meE29QGmDeTFsZ0mRX_WiwDmYq9U
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjMsImV4cCI6MTYyNDQ2NTEzN30.3qQAbx4AQnGaN8L0RwU_MCeNY7WEtlxXh0m95hJ7mts
 
 
 ### POST a new lesson 
 POST http://127.0.0.1:8000/api/courses/1/lessons/
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjMsImV4cCI6MTYyNDQ2NTEzN30.3qQAbx4AQnGaN8L0RwU_MCeNY7WEtlxXh0m95hJ7mts
 Content-Type: application/json
 
 {
+ 
 }
 
 
@@ -51,6 +53,17 @@ Content-Type: application/json
     "answer": "Because is not a constant"
   }
 }
+
+
+### POST a new assessment 
+PUT http://127.0.0.1:8000/api/courses/2/lessons/2/
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjMsImV4cCI6MTYyNDQ2NTEzN30.3qQAbx4AQnGaN8L0RwU_MCeNY7WEtlxXh0m95hJ7mts
+Content-Type: application/json
+
+{
+  
+}
+
 
 
 
@@ -90,3 +103,6 @@ Content-Type: application/json
     "email": "abz2@email.com",
     "password": "pass"
 }
+###
+
+DELETE http://localhost:8000/api/courses/1/comments/3/
