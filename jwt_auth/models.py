@@ -11,7 +11,39 @@ class User(AbstractUser):
     badge_image = models.CharField(max_length=250, blank=True)
     bio = models.TextField(max_length=350, blank=True)
     rating = models.IntegerField(validators=[MinValueValidator(1), MaxValueValidator(5)], default = 0)
+    LEARNER = 'LRN'
+    INSTRUCTOR = 'INS'
+    USER_TYPE = [
+        (LEARNER, 'Learner'),
+        (INSTRUCTOR, 'Instructor')
+    ]
+    role = models.CharField(
+        max_length = 3,
+        choices = USER_TYPE
+    )
 
+    def is_upperclass(self):
+        return f'Role: {self.role}'
+
+# class UserType(models.Model):
+#     user = models.OneToOneField(
+#         User,
+#         related_name="type",
+#         on_delete=models.CASCADE
+#     )
+#     LEARNER = 'LRN'
+#     INSTRUCTOR = 'INS'
+#     USER_TYPE = [
+#         (LEARNER, 'Learner'),
+#         (INSTRUCTOR, 'Instructor')
+#     ]
+#     role = models.CharField(
+#         max_length = 3,
+#         choices = USER_TYPE
+#     )
+
+#     def is_upperclass(self):
+        return f'Role: {self.role}'
     # rating = models.IntegerChoices(
     #     POOR = 1,
     #     OK = 2,

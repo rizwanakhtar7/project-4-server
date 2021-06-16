@@ -1,6 +1,6 @@
 # GET ALL COURSES
 GET http://localhost:8000/api/courses
-Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjQsImV4cCI6MTYyNDQzOTM5MH0.-YDYMm-3VGF-Jvw25A89tV0i71wVLYo1L0hit5T8h10
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjE5LCJleHAiOjE2MjQ0NjA2MTN9.6S4DAOXzugnsuIknmSR6bFJvpST7cFtWoa0Eqx54F9U
 
 ###
 
@@ -44,10 +44,11 @@ Content-Type: application/json
 {
   "password": "pass",
   "passwordConfirmation": "pass",
-  "username": "rizwan3",
-  "fullName": "rizwan akhtar",
-  "email": "rizwan3@email.com",
-  "profileImage": "image.jpg"
+  "username": "abz2",
+  "fullName": "abubakar siddique",
+  "email": "abz2@email.com",
+  "profileImage": "image.jpg",
+  "role": "LRN"
   //"badgeImage": "math-fractions.jpg",
   //"bio": "Hi, I'm Rizwan and I teach Python",
   //"rating": 5
@@ -59,6 +60,6 @@ POST http://localhost:8000/api/auth/login/
 Content-Type: application/json
 
 {
-    "email": "rizwan@email.com",
+    "email": "abz2@email.com",
     "password": "pass"
 }
