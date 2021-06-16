@@ -6,6 +6,7 @@ Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjE5LCJleHAiO
 
 # GET A SINGLE COUTSE
 GET http://localhost:8000/api/courses/1/
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjIsImV4cCI6MTYyNDQ0NzYxMn0.v9bIhnXdN9ZfaC9meE29QGmDeTFsZ0mRX_WiwDmYq9U
 
 ###
 
@@ -23,18 +24,44 @@ Content-Type: application/json
 }
 
 ###
-GET http://localhost:8000/api/courses/1/assessments/1
+GET http://localhost:8000/api/courses/1/assessments/
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjIsImV4cCI6MTYyNDQ0NzYxMn0.v9bIhnXdN9ZfaC9meE29QGmDeTFsZ0mRX_WiwDmYq9U
 
-###
-DELETE http://127.0.0.1:8000/api/courses/1/comments/2/
 
-### POST a COMMENT Assessment
-POST http://127.0.0.1:8000/api/courses/1/comments/
+### POST a new lesson 
+POST http://127.0.0.1:8000/api/courses/1/lessons/
 Content-Type: application/json
 
 {
-  "content":"AMAZING SHIZZ!"
 }
+
+
+### POST a new assessment 
+POST http://127.0.0.1:8000/api/courses/3/assessments/
+Content-Type: application/json
+
+{
+  "assessment": {
+    "name": "TEST ASSESSMENT for variables part 2"
+  },
+  "questions": {
+    "question": "Why is the universe expanding part 2 ?"
+  },
+  "answer": {
+    "answer": "Because is not a constant"
+  }
+}
+
+
+
+### DELETE a new lesson 
+DELETE http://127.0.0.1:8000/api/courses/2/lessons/2/
+
+
+
+### SEARCH Courses  
+Get http://127.0.0.1:8000/api/courses/?search=Programming
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjIsImV4cCI6MTYyNDQ0NzYxMn0.v9bIhnXdN9ZfaC9meE29QGmDeTFsZ0mRX_WiwDmYq9U
 
 ###
 # Register a new user
