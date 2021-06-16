@@ -1,5 +1,6 @@
 # GET ALL COURSES
 GET http://localhost:8000/api/courses
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjQsImV4cCI6MTYyNDQzOTM5MH0.-YDYMm-3VGF-Jvw25A89tV0i71wVLYo1L0hit5T8h10
 
 ###
 
@@ -10,6 +11,7 @@ GET http://localhost:8000/api/courses/1/
 
 # POST A NEW COURSE
 POST http://localhost:8000/api/courses/
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjQsImV4cCI6MTYyNDQzOTM5MH0.-YDYMm-3VGF-Jvw25A89tV0i71wVLYo1L0hit5T8h10
 Content-Type: application/json
 
 {
@@ -19,14 +21,6 @@ Content-Type: application/json
   "name": "Math",
   "subject": "Math"
 }
-
-###
-
-# GET ALL ASSESSMENTS
-GET http://localhost:8000/assessments/
-
-### GET a Single Assessment
-GET http://localhost:8000/assessments/1/
 
 ###
 GET http://localhost:8000/api/courses/1/assessments/1
@@ -40,4 +34,31 @@ Content-Type: application/json
 
 {
   "content":"AMAZING SHIZZ!"
+}
+
+###
+# Register a new user
+POST http://localhost:8000/api/auth/register/
+Content-Type: application/json
+
+{
+  "password": "pass",
+  "passwordConfirmation": "pass",
+  "username": "rizwan3",
+  "fullName": "rizwan akhtar",
+  "email": "rizwan3@email.com",
+  "profileImage": "image.jpg"
+  //"badgeImage": "math-fractions.jpg",
+  //"bio": "Hi, I'm Rizwan and I teach Python",
+  //"rating": 5
+}
+
+###
+# Login a user
+POST http://localhost:8000/api/auth/login/
+Content-Type: application/json
+
+{
+    "email": "rizwan@email.com",
+    "password": "pass"
 }
