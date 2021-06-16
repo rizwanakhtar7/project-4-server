@@ -1,0 +1,144 @@
+[
+{
+  "model": "learn.course",
+  "pk": 1,
+  "fields": {
+    "title": "Intro to Python Programming",
+    "description": "Intro to Python Programming",
+    "course_image": "https://www.raspberrypi.org/documentation/usage/python/images/python-logo.png",
+    "name": "Python Intro",
+    "subject": "Computing"
+  }
+},
+{
+  "model": "learn.course",
+  "pk": 2,
+  "fields": {
+    "title": "Intro to Js",
+    "description": "Intro to Js",
+    "course_image": "https://www.raspberrypi.org/documentation/usage/python/images/python-logo.png",
+    "name": "JS into",
+    "subject": "Computing"
+  }
+},
+{
+  "model": "learn.lesson",
+  "pk": 1,
+  "fields": {
+    "title": "Python functions",
+    "description": "intro to python - all about functions",
+    "content": "python functions",
+    "file_upload": "test upload",
+    "video_link": "https://www.youtube.com/watch?v=rfscVS0vtbw",
+    "course": 1
+  }
+},
+{
+  "model": "learn.lesson",
+  "pk": 2,
+  "fields": {
+    "title": "JS variables",
+    "description": "JS va",
+    "content": "JS va",
+    "file_upload": "test upload",
+    "video_link": "https://www.youtube.com/watch?v=rfscVS0vtbw",
+    "course": 2
+  }
+},
+{
+  "model": "learn.lesson",
+  "pk": 3,
+  "fields": {
+    "title": "Variables in Python part 2",
+    "description": "Variables in Python part 2",
+    "content": "Variables in Python part 2",
+    "file_upload": "test upload",
+    "video_link": "https://www.youtube.com/watch?v=rfscVS0vtbw",
+    "course": 1
+  }
+},
+{
+  "model": "learn.comment",
+  "pk": 3,
+  "fields": {
+    "content": "AMAZING SHIZZ!",
+    "lesson": 1
+  }
+},
+{
+  "model": "learn.assessment",
+  "pk": 1,
+  "fields": {
+    "name": "Test your python knowledge",
+    "lesson": 1
+  }
+},
+{
+  "model": "learn.assessment",
+  "pk": 4,
+  "fields": {
+    "name": "TEST ASSESSMENT",
+    "lesson": 2
+  }
+},
+{
+  "model": "learn.question",
+  "pk": 1,
+  "fields": {
+    "assessment": 1,
+    "question": "1) What is a variable ?"
+  }
+},
+{
+  "model": "learn.question",
+  "pk": 3,
+  "fields": {
+    "assessment": 1,
+    "question": "1) What is a function ?"
+  }
+},
+{
+  "model": "learn.question",
+  "pk": 4,
+  "fields": {
+    "assessment": 1,
+    "question": "Who created Python?"
+  }
+},
+{
+  "model": "learn.answer",
+  "pk": 1,
+  "fields": {
+    "answer": "its a place",
+    "is_correct": false,
+    "question": 1
+  }
+},
+{
+  "model": "learn.answer",
+  "pk": 2,
+  "fields": {
+    "answer": "reserved memory location to store values",
+    "is_correct": true,
+    "question": 1
+  }
+},
+{
+  "model": "learn.answer",
+  "pk": 3,
+  "fields": {
+    "answer": "incorrect answer is something else",
+    "is_correct": false,
+    "question": 3
+  }
+},
+{
+  "model": "learn.answer",
+  "pk": 4,
+  "fields": {
+    "answer": "van rossum",
+    "is_correct": true,
+    "question": 4
+  }
+}
+]

@@ -21,23 +21,50 @@ Content-Type: application/json
 }
 
 ###
-
-# GET ALL ASSESSMENTS
-GET http://localhost:8000/assessments/
-
-### GET a Single Assessment
-GET http://localhost:8000/assessments/1/
+GET http://localhost:8000/api/courses/1/assessments/
 
 ###
-GET http://localhost:8000/api/courses/1/assessments/1
-
-###
-DELETE http://127.0.0.1:8000/api/courses/1/comments/2/
+DELETE http://127.0.0.1:8000/api/courses/2/comments/3/
 
 ### POST a COMMENT Assessment
-POST http://127.0.0.1:8000/api/courses/1/comments/
+POST http://127.0.0.1:8000/api/courses/2/comments/
 Content-Type: application/json
 
 {
-  "content":"AMAZING SHIZZ!"
+  "content": "amazing lesson!"
 }
+
+
+### POST a new lesson 
+POST http://127.0.0.1:8000/api/courses/1/lessons/
+Content-Type: application/json
+
+{
+}
+
+
+### POST a new assessment 
+POST http://127.0.0.1:8000/api/courses/3/assessments/
+Content-Type: application/json
+
+{
+  "assessment": {
+    "name": "TEST ASSESSMENT for variables part 2"
+  },
+  "questions": {
+    "question": "Why is the universe expanding part 2 ?"
+  },
+  "answer": {
+    "answer": "Because is not a constant"
+  }
+}
+
+
+
+### DELETE a new lesson 
+DELETE http://127.0.0.1:8000/api/courses/2/lessons/2/
+
+
+
+### SEARCH Courses  
+Get http://127.0.0.1:8000/api/courses/?search=Programming
