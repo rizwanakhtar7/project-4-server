@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'learn',
     'django_filters',
+    'jwt_auth',
 ]
 
 MIDDLEWARE = [
@@ -139,4 +140,9 @@ REST_FRAMEWORK = {
         'djangorestframework_camel_case.parser.CamelCaseJSONParser',
     ),
     'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend'],
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+    'jwt_auth.authentication.JWTAuthentication'
+    ],
 }
+
+AUTH_USER_MODEL = 'jwt_auth.User'

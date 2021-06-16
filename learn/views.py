@@ -4,6 +4,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework import filters,generics
+from rest_framework.permissions import IsAuthenticated
 
 from .models import Assessment, Course, Comment, Lesson
 from .serializers import (
@@ -18,7 +19,11 @@ from .serializers import (
     AnswerSerializer
 )
 
+
 class CourseListView(APIView):
+
+    permission_classes = (IsAuthenticated, )
+
     # GET ALL COURSES
     def get(self, _request):
         courses = Course.objects.all()
@@ -35,6 +40,9 @@ class CourseListView(APIView):
 
 
 class CourseDetailView(APIView):
+
+    permission_classes = (IsAuthenticated, )
+
     # GET A SINGLE COURSE
     def get_course(self, pk):
         try:
@@ -45,11 +53,11 @@ class CourseDetailView(APIView):
     def get(self, request, pk):
         course = self.get_course(pk=pk)
         query = request.GET.items()
-        
+
         print(list(query))
         serialized_course = PopulatedCourseSerializer(course)
         return Response(serialized_course.data, status=status.HTTP_200_OK)
-    
+
     def put(self, request, pk):
         course_to_update = self.get_course(pk=pk)
         updated_course = CourseSerializer(course_to_update, data=request.data)
@@ -57,7 +65,7 @@ class CourseDetailView(APIView):
             updated_course.save()
             return Response(updated_course.data, status=status.HTTP_202_ACCEPTED)
         return Response(updated_course.errors, status=status.HTTP_422_UNPROCESSABLE_ENTITY)
-    
+
     def delete(self, _request, pk):
         course_to_delete = self.get_course(pk=pk)
         course_to_delete.delete()
@@ -103,19 +111,21 @@ class LessonDetailListView(APIView):
 
         
 class AssessmentDetailView(APIView):
-   # GET ALL Assessments
+    permission_classes = (IsAuthenticated, )
+
+    # GET ALL Assessments
     def get(self, _request, lesson_pk):
         assessments = Assessment.objects.all()
         serialized_assessments = PopulatedAssessmentSerializer(assessments, many=True)
         return Response(serialized_assessments.data, status=status.HTTP_200_OK)
 
-   ### POST a Assessment on lesson ID 
+    ### POST a Assessment on lesson ID 
     def post(self, request, lesson_pk):
         assesment = request.data.get('assessment')
         assesment['lesson'] = lesson_pk
 
         serialized_assessment = AssessmentSerializer(data=assesment)
-       
+
         # One for loop that gets the question appends the assesment ID saves the question then IN THE SAME FOR LOOP save the answer using that 
         # question ID this is assuming if your question and aswers have the same order.
 
@@ -140,9 +150,9 @@ class AssessmentDetailView(APIView):
                             status=status.HTTP_201_CREATED)
         return Response(serialized_assessment.errors, status=status.HTTP_422_UNPROCESSABLE_ENTITY)
 
-   
-
 class CommentListView(APIView):
+
+    permission_classes = (IsAuthenticated, )
 
     def get(self, _request):
         lessons = Course.objects.all()
@@ -157,7 +167,7 @@ class CommentListView(APIView):
             return Response(serialized_comment.data, status=status.HTTP_201_CREATED)
         return Response(serialized_comment.errors, status=status.HTTP_422_UNPROCESSABLE_ENTITY)
 
-    
+
     def delete(self, _request, lesson_pk, comment_pk):
         try:
             comment_to_delete = Comment.objects.get(pk=comment_pk)
@@ -168,6 +178,9 @@ class CommentListView(APIView):
             raise NotFound()
 
 class CourseListView(generics.ListAPIView):
+    permission_classes = (IsAuthenticated, )
+
+    
     queryset = Course.objects.all()
     serializer_class = CourseSerializer
     filter_backends = [filters.SearchFilter]

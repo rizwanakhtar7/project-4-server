@@ -1,15 +1,18 @@
 # GET ALL COURSES
 GET http://localhost:8000/api/courses
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjIsImV4cCI6MTYyNDQ0NzYxMn0.v9bIhnXdN9ZfaC9meE29QGmDeTFsZ0mRX_WiwDmYq9U
 
 ###
 
 # GET A SINGLE COUTSE
 GET http://localhost:8000/api/courses/1/
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjIsImV4cCI6MTYyNDQ0NzYxMn0.v9bIhnXdN9ZfaC9meE29QGmDeTFsZ0mRX_WiwDmYq9U
 
 ###
 
 # POST A NEW COURSE
 POST http://localhost:8000/api/courses/
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjQsImV4cCI6MTYyNDQzOTM5MH0.-YDYMm-3VGF-Jvw25A89tV0i71wVLYo1L0hit5T8h10
 Content-Type: application/json
 
 {
@@ -22,17 +25,7 @@ Content-Type: application/json
 
 ###
 GET http://localhost:8000/api/courses/1/assessments/
-
-###
-DELETE http://127.0.0.1:8000/api/courses/2/comments/3/
-
-### POST a COMMENT Assessment
-POST http://127.0.0.1:8000/api/courses/2/comments/
-Content-Type: application/json
-
-{
-  "content": "amazing lesson!"
-}
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjIsImV4cCI6MTYyNDQ0NzYxMn0.v9bIhnXdN9ZfaC9meE29QGmDeTFsZ0mRX_WiwDmYq9U
 
 
 ### POST a new lesson 
@@ -68,3 +61,31 @@ DELETE http://127.0.0.1:8000/api/courses/2/lessons/2/
 
 ### SEARCH Courses  
 Get http://127.0.0.1:8000/api/courses/?search=Programming
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjIsImV4cCI6MTYyNDQ0NzYxMn0.v9bIhnXdN9ZfaC9meE29QGmDeTFsZ0mRX_WiwDmYq9U
+
+###
+# Register a new user
+POST http://localhost:8000/api/auth/register/
+Content-Type: application/json
+
+{
+  "password": "pass",
+  "passwordConfirmation": "pass",
+  "username": "rizwan3",
+  "fullName": "rizwan akhtar",
+  "email": "rizwan3@email.com",
+  "profileImage": "image.jpg"
+  //"badgeImage": "math-fractions.jpg",
+  //"bio": "Hi, I'm Rizwan and I teach Python",
+  //"rating": 5
+}
+
+###
+# Login a user
+POST http://localhost:8000/api/auth/login/
+Content-Type: application/json
+
+{
+    "email": "rizwan3@email.com",
+    "password": "pass"
+}
