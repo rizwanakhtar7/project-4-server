@@ -1,18 +1,29 @@
-# GET ALL COURSES
+@learner = eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjE5LCJleHAiOjE2MjQ0ODA2MjN9.4uhC0id9r5XJ2LGptRBOhjI1x982rvwG-gP9Rz1JrvA
+@instructor = eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjIwLCJleHAiOjE2MjQ0ODA2Nzd9.TFlIfW2Wjliu6ZvsABp3JMMrBIZ1tBBqD8GKhg_xtIU
+###
+
+
+//////////////////// GET ALL COURSES ///////////////////
 GET http://localhost:8000/api/courses
-Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjMsImV4cCI6MTYyNDQ2NTEzN30.3qQAbx4AQnGaN8L0RwU_MCeNY7WEtlxXh0m95hJ7mts
-
+Authorization: Bearer {{learner}}
+###
+GET http://localhost:8000/api/courses
+Authorization: Bearer {{instructor}}
 ###
 
-# GET A SINGLE COUTSE
+
+//////////////////// GET A SINGLE COURSE ///////////////////
 GET http://localhost:8000/api/courses/1/
-Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjMsImV4cCI6MTYyNDQ2NTEzN30.3qQAbx4AQnGaN8L0RwU_MCeNY7WEtlxXh0m95hJ7mts
-
+Authorization: Bearer {{learner}}
+###
+GET http://localhost:8000/api/courses/1/
+Authorization: Bearer {{instructor}}
 ###
 
-# POST A NEW COURSE
+
+//////////////////// POST A NEW COURSE ///////////////////
 POST http://localhost:8000/api/courses/
-Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImV4cCI6MTYyNDQ4NTkzNH0.2pGEOdRMjnaxcX_BS0TlrvTRwYeHbghAznuITdWPJ9I
+Authorization: Bearer {{instructor}}
 Content-Type: application/json
 
 {
@@ -22,8 +33,91 @@ Content-Type: application/json
   "name": "Math",
   "subject": "Math"
 }
+###
+
+
+//////////////////// EDIT A COURSE ///////////////////
+PUT http://localhost:8000/api/courses/8/
+Authorization: Bearer {{instructor}}
+Content-Type: application/json
+
+{
+  "title": "Math 102",
+  "description": "The fundamentals of Math",
+  "courseImage": "image.jpg",
+  "name": "Math",
+  "subject": "Math"
+}
+###
+
+
+//////////////////// DELETE A COURSE ///////////////////
+DELETE http://localhost:8000/api/courses/8/
+Authorization: Bearer {{instructor}}
+###
+
+
+//////////////////// REGISTER A USER - LEARNER ///////////////////
+POST http://localhost:8000/api/auth/register/
+Content-Type: application/json
+
+{
+  "fullName": "abubakar siddique",
+  "email": "abz2@email.com",
+  "profileImage": "image.jpg",
+  "username": "abz2",
+  "role": "LRN",
+  "password": "pass",
+  "passwordConfirmation": "pass"
+}
 
 ###
+//////////////////// REGISTER A USER - INSTRUCTOR ///////////////////
+POST http://localhost:8000/api/auth/register/
+Content-Type: application/json
+
+{
+  "fullName": "abubakar siddique",
+  "email": "abz3@email.com",
+  "profileImage": "image.jpg",
+  "username": "abz3",
+  "role": "INS",
+  "password": "pass",
+  "passwordConfirmation": "pass",
+  "bio": "Hi, I'm Rizwan and I teach Python"
+}
+###
+
+
+//////////////////// LOGIN A USER ///////////////////
+POST http://localhost:8000/api/auth/login/
+Content-Type: application/json
+
+{
+    "email": "abz2@email.com",
+    "password": "pass"
+}
+###
+
+
+
+
+//////////////////// GET ALL LESSONS ///////////////////
+# GET http://localhost:8000/api/1/lessons/
+# Authorization: Bearer {{learner}}
+###
+# GET http://localhost:8000/api/1/lessons
+# Authorization: Bearer {{instructor}}
+
+//////////////////// POST A LESSON ///////////////////
+
+
+//////////////////// EDIT A LESSON ///////////////////
+
+
+//////////////////// DELETE A LESSON ///////////////////
+
+
 GET http://localhost:8000/api/courses/1/assessments/
 Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjMsImV4cCI6MTYyNDQ2NTEzN30.3qQAbx4AQnGaN8L0RwU_MCeNY7WEtlxXh0m95hJ7mts
 
@@ -33,9 +127,10 @@ POST http://127.0.0.1:8000/api/courses/1/lessons/
 Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjMsImV4cCI6MTYyNDQ2NTEzN30.3qQAbx4AQnGaN8L0RwU_MCeNY7WEtlxXh0m95hJ7mts
 Content-Type: application/json
 
-{
- 
-}
+{}
+
+### DELETE a new lesson 
+DELETE http://127.0.0.1:8000/api/courses/2/lessons/2/
 
 
 ### POST a new assessment 
@@ -64,45 +159,10 @@ Content-Type: application/json
   
 }
 
-
-
-
-### DELETE a new lesson 
-DELETE http://127.0.0.1:8000/api/courses/2/lessons/2/
-
-
-
 ### SEARCH Courses  
 Get http://127.0.0.1:8000/api/courses/?search=Programming
 Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjIsImV4cCI6MTYyNDQ0NzYxMn0.v9bIhnXdN9ZfaC9meE29QGmDeTFsZ0mRX_WiwDmYq9U
 
-###
-# Register a new user
-POST http://localhost:8000/api/auth/register/
-Content-Type: application/json
-
-{
-  "password": "pass",
-  "passwordConfirmation": "pass",
-  "username": "abz2",
-  "fullName": "abubakar siddique",
-  "email": "abz2@email.com",
-  "profileImage": "image.jpg",
-  "role": "LRN"
-  //"badgeImage": "math-fractions.jpg",
-  //"bio": "Hi, I'm Rizwan and I teach Python",
-  //"rating": 5
-}
-
-###
-# Login a user
-POST http://localhost:8000/api/auth/login/
-Content-Type: application/json
-
-{
-    "email": "admin@admin.com",
-    "password": "rizwan"
-}
 ###
 
 DELETE http://localhost:8000/api/courses/1/comments/3/
