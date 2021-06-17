@@ -3,7 +3,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework import filters,generics
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import IsAuthenticated,IsAuthenticatedOrReadOnly
 from django.contrib.auth import get_user_model
 
 from .models import Assessment, Course, Comment, Lesson
@@ -33,18 +33,20 @@ class AssessmentDetailView(APIView):
 
 class CourseListView(APIView):
 
-    permission_classes = (IsAuthenticated, )
+    permission_classes = (IsAuthenticatedOrReadOnly, )
 
     # GET ALL COURSES
     def get(self, request):
-        if request.user.role == "LRN" or request.user.role == "INS":
-            courses = Course.objects.all()
-            serialized_courses = PopulatedCourseSerializer(courses, many=True)
-            return Response(serialized_courses.data, status=status.HTTP_200_OK)
-        return Response(status=status.HTTP_401_UNAUTHORIZED)
+        # if request.user.role == "LRN" or request.user.role == "INS":
+        courses = Course.objects.all()
+        serialized_courses = PopulatedCourseSerializer(courses, many=True)
+        return Response(serialized_courses.data, status=status.HTTP_200_OK)
+        # return Response(status=status.HTTP_401_UNAUTHORIZED)
 
     # POST A NEW COURSE
+
     def post(self, request):
+
         new_course = CourseSerializer(data=request.data)
         if new_course.is_valid():
             new_course.save()
@@ -207,9 +209,9 @@ class CommentListView(APIView):
                 raise NotFound()
         return Response(status=status.HTTP_401_UNAUTHORIZED)
 
-class CourseListView(generics.ListAPIView):
-    permission_classes = (IsAuthenticated, )
-    queryset = Course.objects.all()
-    serializer_class = CourseSerializer
-    filter_backends = [filters.SearchFilter]
-    search_fields = ['title', 'description','course_image','subject','name']
+# class CourseListView(generics.ListAPIView):
+#     permission_classes = (IsAuthenticated, )
+#     queryset = Course.objects.all()
+#     serializer_class = CourseSerializer
+#     filter_backends = [filters.SearchFilter]
+#     search_fields = ['title', 'description','course_image','subject','name']

@@ -12,13 +12,13 @@ Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjMsImV4cCI6M
 
 # POST A NEW COURSE
 POST http://localhost:8000/api/courses/
-Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjMsImV4cCI6MTYyNDQ2NTEzN30.3qQAbx4AQnGaN8L0RwU_MCeNY7WEtlxXh0m95hJ7mts
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImV4cCI6MTYyNDQ4NTkzNH0.2pGEOdRMjnaxcX_BS0TlrvTRwYeHbghAznuITdWPJ9I
 Content-Type: application/json
 
 {
-  "title": "Math 101",
-  "description": "The fundamentals of Math",
-  "courseImage": "image.jpg",
+  "title": "Pythagorous(spelt incorrectly) course",
+  "description": "all about triangles and angles and shortest distance of the hypthonose",
+  "courseImage": "https://2aszhi3llh0x466uws21w6cc-wpengine.netdna-ssl.com/wp-content/uploads/Pythagoras-theorem.jpg",
   "name": "Math",
   "subject": "Math"
 }
@@ -100,8 +100,8 @@ POST http://localhost:8000/api/auth/login/
 Content-Type: application/json
 
 {
-    "email": "abz2@email.com",
-    "password": "pass"
+    "email": "admin@admin.com",
+    "password": "rizwan"
 }
 ###
 
