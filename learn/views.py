@@ -46,7 +46,7 @@ class CourseListView(APIView):
 
 
 class CourseListView(generics.ListAPIView):
-    permission_classes = (IsAuthenticated, )
+    permission_classes = (IsAuthenticatedOrReadOnly, )
     queryset = Course.objects.all()
     serializer_class = CourseSerializer
     filter_backends = [filters.SearchFilter]
