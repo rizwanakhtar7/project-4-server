@@ -1,5 +1,5 @@
 @learner = eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjE5LCJleHAiOjE2MjQ0ODA2MjN9.4uhC0id9r5XJ2LGptRBOhjI1x982rvwG-gP9Rz1JrvA
-@instructor = eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjIwLCJleHAiOjE2MjQ0ODA2Nzd9.TFlIfW2Wjliu6ZvsABp3JMMrBIZ1tBBqD8GKhg_xtIU
+@instructor = eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjMsImV4cCI6MTYyNDUzMzg3NX0.lNAKb30vLgVuBmWIwnX3l74-AQNFWn9TdzDN6Liphj4
 ###
 
 
@@ -124,7 +124,7 @@ Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjMsImV4cCI6M
 
 ### POST a new lesson 
 POST http://127.0.0.1:8000/api/courses/1/lessons/
-Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjMsImV4cCI6MTYyNDQ2NTEzN30.3qQAbx4AQnGaN8L0RwU_MCeNY7WEtlxXh0m95hJ7mts
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjMsImV4cCI6MTYyNDUzMzg3NX0.lNAKb30vLgVuBmWIwnX3l74-AQNFWn9TdzDN6Liphj4
 Content-Type: application/json
 
 {}

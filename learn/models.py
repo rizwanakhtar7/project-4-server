@@ -11,7 +11,11 @@ class Course(models.Model):
     SubjectType = models.TextChoices('SubjectType', 'Computing, Math, Science, English')
     name = models.CharField(max_length=60)
     subject = models.CharField(blank=True, choices=SubjectType.choices, max_length=10)
-
+    rating_by = models.ManyToManyField(
+        'jwt_auth.User',
+        related_name='ratings',
+        blank=True
+    )
     def __str__(self):
         return f'{self.title}'
 

@@ -1,3 +1,4 @@
+from learn.views import User
 from rest_framework import serializers
 from .models import Assessment, Comment, Course, Lesson, Question, Answer
 

@@ -47,10 +47,10 @@ class CourseListView(APIView):
 
 class CourseListView(generics.ListAPIView):
     permission_classes = (IsAuthenticatedOrReadOnly, )
-    queryset = Course.objects.all()
-    serializer_class = CourseSerializer
+    queryset = Course.objects.all() 
+    serializer_class = PopulatedCourseSerializer
     filter_backends = [filters.SearchFilter]
-    search_fields = ['title', 'description','course_image','subject','name']
+    search_fields = ('title', 'description','subject','lessons__title')
 
 
 class CourseDetailView(APIView):
