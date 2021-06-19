@@ -26,7 +26,7 @@ class CourseListView(APIView):
     permission_classes = (IsAuthenticatedOrReadOnly, )
 
     # GET ALL COURSES
-    def get(self, request):
+    def get(self, _request):
         # if request.user.role == "LRN" or request.user.role == "INS":
         courses = Course.objects.all()
         serialized_courses = PopulatedCourseSerializer(courses, many=True)
@@ -45,12 +45,12 @@ class CourseListView(APIView):
         return Response(status=status.HTTP_401_UNAUTHORIZED)
 
 
-class CourseListView(generics.ListAPIView):
-    permission_classes = (IsAuthenticatedOrReadOnly, )
-    queryset = Course.objects.all()
-    serializer_class = CourseSerializer
-    filter_backends = [filters.SearchFilter]
-    search_fields = ['title', 'description','course_image','subject','name']
+# class CourseListView(generics.ListAPIView):
+#     permission_classes = (IsAuthenticatedOrReadOnly, )
+#     queryset = Course.objects.all()
+#     serializer_class = CourseSerializer
+#     filter_backends = [filters.SearchFilter]
+#     search_fields = ['title', 'description','course_image','subject','name']
 
 
 class CourseDetailView(APIView):
