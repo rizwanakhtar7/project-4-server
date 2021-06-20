@@ -1,7 +1,10 @@
+from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
 from django.contrib.postgres.fields import ArrayField
+from django.db.models.deletion import DO_NOTHING
 
 # from django.db.models.deletion import CASCADE
+
 
 # Create your models here.
 class Course(models.Model):
@@ -16,9 +19,37 @@ class Course(models.Model):
         related_name='ratings',
         blank=True
     )
+    favorited_by = models.ManyToManyField(
+        'jwt_auth.User',
+        related_name='favorites',
+        blank=True
+    )
+
     def __str__(self):
         return f'{self.title}'
 
+class CourseFeedback(models.Model):
+
+    class Ratings(models.IntegerChoices):
+        ONE = 1
+        TWO = 2
+        THREE = 3
+        FOUR = 4
+        FIVE = 5
+
+    rating = models.IntegerField(choices=Ratings.choices)
+    user = models.ForeignKey(
+        'jwt_auth.User',
+        related_name="feedback",
+        null=True,
+        on_delete=DO_NOTHING,
+    )
+    course = models.ForeignKey(
+        Course,
+        related_name="feedback",
+        on_delete=models.CASCADE
+
+    )
 
 class Lesson(models.Model):
     title = models.CharField(max_length=50)
@@ -45,6 +76,14 @@ class Comment(models.Model):
         related_name='comments',
         on_delete=models.CASCADE
     )
+    user = models.ForeignKey(
+        'jwt_auth.User',
+        related_name="comments",
+        null=True,
+        on_delete=DO_NOTHING,
+    )
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return f'Comment {self.id} on {self.lesson}'

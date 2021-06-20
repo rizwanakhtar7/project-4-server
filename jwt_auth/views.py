@@ -1,5 +1,6 @@
 # time required for token issue time and expiry
 from datetime import datetime, timedelta
+from jwt_auth.populated import PopulatedUserSerializer
 from rest_framework.views import APIView
 from rest_framework.response import Response
 # in case something goes wrong with login
@@ -55,13 +56,12 @@ class LoginView(APIView):
             {'token': token, 'message': f'Welcome back {user_to_login.username}'}
         )
 
+class ProfileView(APIView):
 
-# class ProfileView(APIView):
-
-#     def get(self, _request, pk):
-#         try: 
-#             user = User.objects.get(pk=pk)
-#             serialized_user = PopulatedUserSerializer(user)
-#             return Response(serialized_user.data, status=status.HTTP_200_OK)
-#         except User.DoesNotExist:
-#             raise NotFound()
+    def get(self, _request, pk):
+        try:
+            user = User.objects.get(pk=pk)
+            serialized_user = PopulatedUserSerializer(user)
+            return Response(serialized_user.data, status=status.HTTP_200_OK)
+        except User.DoesNotExist:
+            raise NotFound()

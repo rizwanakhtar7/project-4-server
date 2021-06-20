@@ -6,16 +6,19 @@ from rest_framework import filters,generics
 from rest_framework.permissions import IsAuthenticated,IsAuthenticatedOrReadOnly
 from django.contrib.auth import get_user_model
 
-from .models import Assessment, Course, Comment, Lesson
+from .models import Assessment, Course, Comment, CourseFeedback, Lesson
 from .serializers import (
+    CourseFeedbackSerializer,
     CourseSerializer,
     LessonSerializer,
     PopulatedAssessmentSerializer,
+    PopulatedCourseFeedbackSerializer,
     PopulatedCourseSerializer,
     AssessmentSerializer,
     CommentSerializer,
+    PopulatedLessonSerializer,
     QuestionSerializer,
-    AnswerSerializer
+    AnswerSerializer,
 )
 
 User = get_user_model()
@@ -23,7 +26,7 @@ User = get_user_model()
 
 class CourseListView(APIView):
 
-    permission_classes = (IsAuthenticatedOrReadOnly, )
+    # permission_classes = (IsAuthenticated, )
 
     # GET ALL COURSES
     def get(self, request):
@@ -45,17 +48,17 @@ class CourseListView(APIView):
         return Response(status=status.HTTP_401_UNAUTHORIZED)
 
 
-class CourseListView(generics.ListAPIView):
-    permission_classes = (IsAuthenticatedOrReadOnly, )
-    queryset = Course.objects.all() 
-    serializer_class = PopulatedCourseSerializer
-    filter_backends = [filters.SearchFilter]
-    search_fields = ('title', 'description','subject','lessons__title')
+# class CourseListView(generics.ListAPIView):
+#     permission_classes = (IsAuthenticatedOrReadOnly, )
+#     queryset = Course.objects.all() 
+#     serializer_class = PopulatedCourseSerializer
+#     filter_backends = [filters.SearchFilter]
+#     search_fields = ('title', 'description','subject','lessons__title')
 
 
 class CourseDetailView(APIView):
 
-    permission_classes = (IsAuthenticated, )
+    # permission_classes = (IsAuthenticated, )
 
     # GET A SINGLE COURSE
     def get_course(self, pk):
@@ -65,13 +68,13 @@ class CourseDetailView(APIView):
             raise NotFound()
 
     def get(self, request, pk):
-        if request.user.role == "LRN" or request.user.role == "INS":
-            course = self.get_course(pk=pk)
-            query = request.GET.items()
-            print(list(query))
-            serialized_course = PopulatedCourseSerializer(course)
-            return Response(serialized_course.data, status=status.HTTP_200_OK)
-        return Response(status=status.HTTP_401_UNAUTHORIZED)
+        # if request.user.role == "LRN" or request.user.role == "INS":
+        course = self.get_course(pk=pk)
+        query = request.GET.items()
+        print(list(query))
+        serialized_course = PopulatedCourseSerializer(course)
+        return Response(serialized_course.data, status=status.HTTP_200_OK)
+        # return Response(status=status.HTTP_401_UNAUTHORIZED)
 
     def put(self, request, pk):
         if request.user.role == "INS":
@@ -98,6 +101,17 @@ class LessonDetailListView(APIView):
             return Lesson.objects.get(pk=pk)
         except Lesson.DoesNotExist:
             raise NotFound()
+
+
+    def get(self, request, pk, lesson_pk):
+        if request.user.role == "LRN" or request.user.role == "INS":
+            lesson = self.get_lesson(pk=lesson_pk)
+            query = request.GET.items()
+            print(list(query))
+            serialized_lesson = PopulatedLessonSerializer(lesson)
+            return Response(serialized_lesson.data, status=status.HTTP_200_OK)
+        return Response(status=status.HTTP_401_UNAUTHORIZED)
+
 
     ### POST A LESSON on course ID
     def post(self, request, pk):
@@ -135,7 +149,7 @@ class LessonDetailListView(APIView):
 
 class AssessmentDetailView(APIView):
 
-    permission_classes = (IsAuthenticated, )
+    # permission_classes = (IsAuthenticated, )
 
     def get(self, request, assessment_pk):
         if request.user.role == "LRN" or request.user.role == "INS":
@@ -147,7 +161,7 @@ class AssessmentDetailView(APIView):
 
 class AssessmentDetailView(APIView):
 
-    permission_classes = (IsAuthenticated, )
+    # permission_classes = (IsAuthenticated, )
 
     # GET ALL Assessments
     def get(self, request, lesson_pk):
@@ -196,7 +210,7 @@ class CommentListView(APIView):
 
     permission_classes = (IsAuthenticated, )
 
-    def get(self, request):
+    def get(self, request, lesson_pk):
         if request.user.role == "LRN":
             lessons = Course.objects.all()
             serialized_lessons = PopulatedCourseSerializer(lessons, many=True)
@@ -213,7 +227,7 @@ class CommentListView(APIView):
             return Response(serialized_comment.errors, status=status.HTTP_422_UNPROCESSABLE_ENTITY)
         return Response(status=status.HTTP_401_UNAUTHORIZED)
 
-    def delete(self, request, comment_pk):
+    def delete(self, request, lesson_pk, comment_pk):
         if request.user.role == "LRN":
             try:
                 comment_to_delete = Comment.objects.get(pk=comment_pk)
@@ -223,3 +237,54 @@ class CommentListView(APIView):
             except Comment.DoesNotExist:
                 raise NotFound()
         return Response(status=status.HTTP_401_UNAUTHORIZED)
+
+    def put(self, request, lesson_pk, comment_pk):
+        if request.user.role == "LRN" or request.user.role == "INS":
+            comment_to_update = Comment.objects.get(pk=comment_pk)
+            updated_comment = CommentSerializer(comment_to_update, data=request.data)
+            if updated_comment.is_valid():
+                updated_comment.save()
+                return Response(updated_comment.data, status=status.HTTP_202_ACCEPTED)
+            return Response(updated_comment.errors, status=status.HTTP_422_UNPROCESSABLE_ENTITY)
+        return Response(status=status.HTTP_401_UNAUTHORIZED)
+
+
+class RatingListView(APIView):
+    # permission_classes = (IsAuthenticated, )
+
+    # GET ALL COURSES
+    def get(self, request, pk):
+        # if request.user.role == "LRN" or request.user.role == "INS":
+        courses_feedback = CourseFeedback.objects.filter(course=pk)
+        serialized_courses = CourseFeedbackSerializer(courses_feedback, many=True)
+        return Response(serialized_courses.data, status=status.HTTP_200_OK)
+        # return Response(status=status.HTTP_401_UNAUTHORIZED)
+
+    # POST A NEW COURSE
+
+    def post(self, request, pk):
+        if request.user.role == "LRN":
+            request.data['user'] = request.user.id
+            new_rating = CourseFeedbackSerializer(data=request.data)
+            if new_rating.is_valid():
+                new_rating.save()
+                return Response(new_rating.data, status=status.HTTP_201_CREATED)
+            return Response(new_rating.errors, status=status.HTTP_422_UNPROCESSABLE_ENTITY)
+        return Response(status=status.HTTP_401_UNAUTHORIZED)
+
+class CourseFavoriteView(APIView):
+
+    permission_classes = (IsAuthenticated, )
+
+    def post(self, request, pk):
+        try:
+            course_to_favorite = Course.objects.get(pk=pk)
+            if request.user in course_to_favorite.favorited_by.all():
+                course_to_favorite.favorited_by.remove(request.user.id)
+            else:
+                course_to_favorite.favorited_by.add(request.user.id)
+            course_to_favorite.save()
+            serialized_course = PopulatedCourseSerializer(course_to_favorite)
+            return Response(serialized_course.data, status=status.HTTP_202_ACCEPTED)
+        except Course.DoesNotExist:
+            raise NotFound()
