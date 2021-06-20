@@ -97,8 +97,10 @@ Content-Type: application/json
 }
 ###
 
+//////////////////// GET USER DETAILS ///////////////////
+GET http://localhost:8000/api/auth/profile/18/
 
-
+###
 
 //////////////////// GET ALL LESSONS ///////////////////
 # GET http://localhost:8000/api/1/lessons/
@@ -158,7 +160,7 @@ Content-Type: application/json
 }
 
 ### SEARCH Courses  
-GET http://127.0.0.1:8000/api/courses/?search=js
+GET http://127.0.0.1:8000/api/courses/?search=Programming
 Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjIsImV4cCI6MTYyNDQ0NzYxMn0.v9bIhnXdN9ZfaC9meE29QGmDeTFsZ0mRX_WiwDmYq9U
 
 ###
