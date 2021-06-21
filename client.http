@@ -1,10 +1,5 @@
-<<<<<<< HEAD
 @learner = eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjE5LCJleHAiOjE2MjQ0ODA2MjN9.4uhC0id9r5XJ2LGptRBOhjI1x982rvwG-gP9Rz1JrvA
-@instructor = eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjM1LCJleHAiOjE2MjQ4NzA1NTB9.qIcCJBIp5RjQDP36cNr2p2iESG3lm6okTnzspmyxJIk
-=======
-@learner = eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjUsImV4cCI6MTYyNDczMjkzNn0.1ejUjfmneKypEXwsBVIBQBRX5tIhakyEl9oG9sOIGt4
-@instructor = eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjQsImV4cCI6MTYyNDcyMjM2NX0.WMnmHOLvzrGIYRi6OJzQv7sc20Pn6XqrrtvHwVHm0r4
->>>>>>> development
+@instructor = eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjM1LCJleHAiOjE2MjQ4NzgwMjB9.3JfkFbIylC_O8BfyusbQwym5R5QyOCtjEpqdAgHrYug
 ###
 
 
@@ -34,11 +29,11 @@ Authorization: Bearer {{instructor}}
 Content-Type: application/json
 
 {
-  "title": "Pythagorous(spelt incorrectly) course",
-  "description": "all about triangles and angles and shortest distance of the hypthonose",
-  "courseImage": "https://2aszhi3llh0x466uws21w6cc-wpengine.netdna-ssl.com/wp-content/uploads/Pythagoras-theorem.jpg",
-  "name": "Algebra",
-  "subject": "Math"
+  "title": "Science",
+  "description": "Learn about Science",
+  "courseImage": "https://lh3.googleusercontent.com/proxy/5AP3b9zctjrY7Y3mOq3ad2NgmL3NoefwjDnWL10A-13pahRuv6I-CHQapkFXbYj-VtFyk0-7r4bu8piEh0kZjYUrJtjVN4n6qJn0nQ1NzzsqIXNzu1j5qW59mqXtmwiQPpyFKF3egmpwrZm4L1Wfe7H0MgHQWvxd8OEGCN3FwSkvGLn85Q",
+  "name": "Chemistry",
+  "subject": "Science"
 }
 ###
 
@@ -101,7 +96,7 @@ POST http://localhost:8000/api/auth/login/
 Content-Type: application/json
 
 {
-    "email": "abs@email.com",
+    "email": "asInstructor@email.com",
     "password": "pass"
 }
 ###

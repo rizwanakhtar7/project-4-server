@@ -40,6 +40,7 @@ class CourseListView(APIView):
 
     def post(self, request):
         if request.user.role == "INS":
+            request.data['owner'] = request.user.id
             new_course = CourseSerializer(data=request.data)
             if new_course.is_valid():
                 new_course.save()
