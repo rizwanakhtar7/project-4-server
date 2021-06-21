@@ -24,6 +24,11 @@ class Course(models.Model):
         related_name='favorites',
         blank=True
     )
+    owner = models.ForeignKey(
+        'jwt_auth.User',
+        related_name="courses_created",
+        on_delete=models.CASCADE
+    )
 
     def __str__(self):
         return f'{self.title}'

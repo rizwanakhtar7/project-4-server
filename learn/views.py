@@ -58,7 +58,7 @@ class CourseListView(APIView):
 
 class CourseDetailView(APIView):
 
-    # permission_classes = (IsAuthenticated, )
+    permission_classes = (IsAuthenticatedOrReadOnly, )
 
     # GET A SINGLE COURSE
     def get_course(self, pk):
@@ -89,8 +89,11 @@ class CourseDetailView(APIView):
         return Response(status=status.HTTP_401_UNAUTHORIZED)
 
     def delete(self, request, pk):
-        if request.user.role == "INS":
-            course_to_delete = self.get_course(pk=pk)
+        course_to_delete = self.get_course(pk=pk)
+        print(course_to_delete.owner.id)
+        print(course_to_delete.owner)
+
+        if request.user.id == course_to_delete.owner.id:
             course_to_delete.delete()
             return Response(status=status.HTTP_204_NO_CONTENT)
         return Response(status=status.HTTP_401_UNAUTHORIZED)

@@ -86,3 +86,4 @@ class PopulatedCourseSerializer(CourseSerializer):
     rating_by = UserSerializer(many=True)
     feedback = PopulatedCourseFeedbackSerializer(many=True)
     favorited_by = CustomUserSerializer(many=True)
+    owner =  UserSerializer()
