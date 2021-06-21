@@ -14,6 +14,7 @@ from .serializers import (
     PopulatedCourseSerializer,
     AssessmentSerializer,
     CommentSerializer,
+    PopulatedLessonSerializer,
     QuestionSerializer,
     AnswerSerializer
 )
@@ -65,13 +66,15 @@ class CourseDetailView(APIView):
             raise NotFound()
 
     def get(self, request, pk):
-        if request.user.role == "LRN" or request.user.role == "INS":
-            course = self.get_course(pk=pk)
-            query = request.GET.items()
-            print(list(query))
-            serialized_course = PopulatedCourseSerializer(course)
-            return Response(serialized_course.data, status=status.HTTP_200_OK)
-        return Response(status=status.HTTP_401_UNAUTHORIZED)
+        print(request.user.id)
+        # print(request.user.role)
+        # if request.user.role == "LRN" or request.user.role == "INS":
+        course = self.get_course(pk=pk)
+        query = request.GET.items()
+        print(list(query))
+        serialized_course = PopulatedCourseSerializer(course)
+        return Response(serialized_course.data, status=status.HTTP_200_OK)
+        # return Response(status=status.HTTP_401_UNAUTHORIZED)
 
     def put(self, request, pk):
         if request.user.role == "INS":
@@ -98,6 +101,15 @@ class LessonDetailListView(APIView):
             return Lesson.objects.get(pk=pk)
         except Lesson.DoesNotExist:
             raise NotFound()
+
+    def get(self, request, _pk, lesson_pk):
+        # if request.user.role == "LRN" or request.user.role == "INS":
+        lesson = self.get_lesson(pk=lesson_pk)
+        query = request.GET.items()
+        print(list(query))
+        serialized_lesson = PopulatedLessonSerializer(lesson)
+        return Response(serialized_lesson.data, status=status.HTTP_200_OK)
+        # return Response(status=status.HTTP_401_UNAUTHORIZED)
 
     ### POST A LESSON on course ID
     def post(self, request, pk):
