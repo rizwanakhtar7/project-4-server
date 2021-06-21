@@ -1,11 +1,16 @@
+<<<<<<< HEAD
 @learner = eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjE5LCJleHAiOjE2MjQ0ODA2MjN9.4uhC0id9r5XJ2LGptRBOhjI1x982rvwG-gP9Rz1JrvA
 @instructor = eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjM1LCJleHAiOjE2MjQ4NzA1NTB9.qIcCJBIp5RjQDP36cNr2p2iESG3lm6okTnzspmyxJIk
+=======
+@learner = eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjUsImV4cCI6MTYyNDczMjkzNn0.1ejUjfmneKypEXwsBVIBQBRX5tIhakyEl9oG9sOIGt4
+@instructor = eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjQsImV4cCI6MTYyNDcyMjM2NX0.WMnmHOLvzrGIYRi6OJzQv7sc20Pn6XqrrtvHwVHm0r4
+>>>>>>> development
 ###
 
 
 //////////////////// GET ALL COURSES ///////////////////
 GET http://localhost:8000/api/courses
-Authorization: Bearer {{learner}}
+Authorization: Bearer {{instructor}}
 ###
 GET http://localhost:8000/api/courses
 Authorization: Bearer {{instructor}}
@@ -14,6 +19,8 @@ Authorization: Bearer {{instructor}}
 
 //////////////////// GET A SINGLE COURSE ///////////////////
 GET http://localhost:8000/api/courses/1/
+
+
 Authorization: Bearer {{learner}}
 ###
 GET http://localhost:8000/api/courses/11/
@@ -37,22 +44,22 @@ Content-Type: application/json
 
 
 //////////////////// EDIT A COURSE ///////////////////
-PUT http://localhost:8000/api/courses/8/
+PUT http://localhost:8000/api/courses/4/
 Authorization: Bearer {{instructor}}
 Content-Type: application/json
 
 {
-  "title": "Math 102",
+  "title": "Math 101",
   "description": "The fundamentals of Math",
   "courseImage": "image.jpg",
-  "name": "Math",
+  "name": "Math(UPDATED)",
   "subject": "Math"
 }
 ###
 
 
 //////////////////// DELETE A COURSE ///////////////////
-DELETE http://localhost:8000/api/courses/8/
+DELETE http://localhost:8000/api/courses/1/
 Authorization: Bearer {{instructor}}
 ###
 
@@ -94,8 +101,13 @@ POST http://localhost:8000/api/auth/login/
 Content-Type: application/json
 
 {
+<<<<<<< HEAD
     "email": "asInstructor@email.com",
     "password": "pass"
+=======
+    "email": "test@test.com",
+    "password": "test"
+>>>>>>> development
 }
 ###
 
@@ -126,7 +138,7 @@ Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjMsImV4cCI6M
 
 ### POST a new lesson 
 POST http://127.0.0.1:8000/api/courses/1/lessons/
-Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjMsImV4cCI6MTYyNDQ2NTEzN30.3qQAbx4AQnGaN8L0RwU_MCeNY7WEtlxXh0m95hJ7mts
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjQsImV4cCI6MTYyNDcyMjM2NX0.WMnmHOLvzrGIYRi6OJzQv7sc20Pn6XqrrtvHwVHm0r4
 Content-Type: application/json
 
 {}
@@ -170,4 +182,64 @@ Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjIsImV4cCI6M
 DELETE http://localhost:8000/api/courses/1/comments/3/
 
 
+
+### get a lesson detail   
+Get http://127.0.0.1:8000/api/courses/1/lessons/1/
+
+
+
+### POST a new lesson 
+POST http://127.0.0.1:8000/api/courses/1/comments/
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjMsImV4cCI6MTYyNDUzMzg3NX0.lNAKb30vLgVuBmWIwnX3l74-AQNFWn9TdzDN6Liphj4
+Content-Type: application/json
+
+{}
+
+
+
+
+### get a rating list page for course   
+Get http://127.0.0.1:8000/api/courses/3/ratings/
+
+
+
+### POST a rating   
+POST http://127.0.0.1:8000/api/courses/4/ratings/
+Authorization: Bearer {{learner}}
+Content-Type: application/json
+
+{
+  "rating": 5,
+  "course": 4
+  
+}
+
+
+### get a lesson id on course  
+Get http://127.0.0.1:8000/api/courses/1/comments/
+Authorization: Bearer {{learner}}
+
+
 ###
+DELETE http://127.0.0.1:8000/api/courses/6/comments/11/
+Authorization: Bearer {{learner}}
+
+
+###
+PUT http://127.0.0.1:8000/api/courses/6/comments/12/
+Authorization: Bearer {{learner}}
+Content-Type: application/json
+
+{
+  "content": "Not a great lesson",
+  "lesson": 6
+}
+
+
+###
+POST http://127.0.0.1:8000/api/courses/4/favorite/
+Authorization: Bearer {{learner}}
+
+
+###
+GET http://127.0.0.1:8000/api/auth/profile/5/

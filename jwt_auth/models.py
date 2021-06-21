@@ -10,7 +10,7 @@ class User(AbstractUser):
     profile_image = models.CharField(max_length=250)
     badge_image = models.CharField(max_length=250, blank=True)
     bio = models.TextField(max_length=350, blank=True)
-    rating = models.IntegerField(validators=[MinValueValidator(1), MaxValueValidator(5)], default = 0)
+    # rating = models.IntegerField(validators=[MinValueValidator(1), MaxValueValidator(5)], default = 0)
     LEARNER = 'LRN'
     INSTRUCTOR = 'INS'
     USER_TYPE = [

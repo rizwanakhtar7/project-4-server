@@ -1,5 +1,29 @@
+# from learn.views import User
 from rest_framework import serializers
-from .models import Assessment, Comment, Course, Lesson, Question, Answer
+from .models import Assessment, Comment, Course, CourseFeedback, Lesson, Question, Answer
+from django.contrib.auth import get_user_model
+
+User = get_user_model()
+
+class CourseFeedbackSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = CourseFeedback
+        fields = '__all__'
+
+
+class UserSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = User
+        fields = '__all__'
+
+class CustomUserSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = User
+        fields = ['id','username']
+
 
 class CourseSerializer(serializers.ModelSerializer):
 
@@ -54,5 +78,11 @@ class PopulatedLessonSerializer(LessonSerializer):
     assessment = PopulatedAssessmentSerializer()
 
 
+class PopulatedCourseFeedbackSerializer(CourseFeedbackSerializer):
+    user = CustomUserSerializer()
+
 class PopulatedCourseSerializer(CourseSerializer):
     lessons = PopulatedLessonSerializer(many=True)
+    rating_by = UserSerializer(many=True)
+    feedback = PopulatedCourseFeedbackSerializer(many=True)
+    favorited_by = CustomUserSerializer(many=True)

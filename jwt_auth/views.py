@@ -1,5 +1,6 @@
 # time required for token issue time and expiry
 from datetime import datetime, timedelta
+from jwt_auth.populated import PopulatedUserSerializer
 from rest_framework.views import APIView
 from rest_framework.response import Response
 # in case something goes wrong with login
@@ -53,7 +54,6 @@ class LoginView(APIView):
         return Response(
             {'token': token, 'message': f'Welcome back {user_to_login.username}'}
         )
-
 
 class ProfileView(APIView):
 
