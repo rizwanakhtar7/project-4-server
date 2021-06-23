@@ -29,11 +29,11 @@ Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjksImV4cCI6M
 Content-Type: application/json
 
 {
-  "title": "Pythagorous(spelt incorrectly) course",
-  "description": "all about triangles and angles and shortest distance of the hypthonose",
-  "courseImage": "https://2aszhi3llh0x466uws21w6cc-wpengine.netdna-ssl.com/wp-content/uploads/Pythagoras-theorem.jpg",
-  "name": "Algebra",
-  "subject": "Math"
+  "title": "Science",
+  "description": "Learn about Science",
+  "courseImage": "https://lh3.googleusercontent.com/proxy/5AP3b9zctjrY7Y3mOq3ad2NgmL3NoefwjDnWL10A-13pahRuv6I-CHQapkFXbYj-VtFyk0-7r4bu8piEh0kZjYUrJtjVN4n6qJn0nQ1NzzsqIXNzu1j5qW59mqXtmwiQPpyFKF3egmpwrZm4L1Wfe7H0MgHQWvxd8OEGCN3FwSkvGLn85Q",
+  "name": "Chemistry",
+  "subject": "Science"
 }
 ###
 
@@ -96,7 +96,11 @@ POST http://localhost:8000/api/auth/login/
 Content-Type: application/json
 
 {
+<<<<<<< HEAD
     "email": "riz123@email.com",
+=======
+    "email": "asInstructor@email.com",
+>>>>>>> development
     "password": "pass"
 }
 
