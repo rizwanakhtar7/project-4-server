@@ -59,7 +59,7 @@ class CourseFeedback(models.Model):
 class Lesson(models.Model):
     title = models.CharField(max_length=50)
     description = models.TextField(max_length=350)
-    content = models.TextField(max_length=350)
+    content = models.TextField(max_length=5350)
     file_upload = models.CharField(max_length=250)
     video_link = models.CharField(max_length=250)
 

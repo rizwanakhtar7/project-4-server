@@ -40,6 +40,7 @@ class CourseListView(APIView):
 
     def post(self, request):
         if request.user.role == "INS":
+            request.data['owner'] = request.user.id
             new_course = CourseSerializer(data=request.data)
             if new_course.is_valid():
                 new_course.save()
@@ -107,7 +108,7 @@ class LessonDetailListView(APIView):
         except Lesson.DoesNotExist:
             raise NotFound()
 
-    def get(self, request, _pk, lesson_pk):
+    def get(self, request, pk, lesson_pk):
         # if request.user.role == "LRN" or request.user.role == "INS":
         lesson = self.get_lesson(pk=lesson_pk)
         query = request.GET.items()

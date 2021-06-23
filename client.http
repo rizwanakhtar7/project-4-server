@@ -1,10 +1,5 @@
-<<<<<<< HEAD
-@learner = eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjE5LCJleHAiOjE2MjQ0ODA2MjN9.4uhC0id9r5XJ2LGptRBOhjI1x982rvwG-gP9Rz1JrvA
-@instructor = eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjM1LCJleHAiOjE2MjQ4NzA1NTB9.qIcCJBIp5RjQDP36cNr2p2iESG3lm6okTnzspmyxJIk
-=======
-@learner = eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjUsImV4cCI6MTYyNDczMjkzNn0.1ejUjfmneKypEXwsBVIBQBRX5tIhakyEl9oG9sOIGt4
-@instructor = eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjQsImV4cCI6MTYyNDcyMjM2NX0.WMnmHOLvzrGIYRi6OJzQv7sc20Pn6XqrrtvHwVHm0r4
->>>>>>> development
+@learner = eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjgsImV4cCI6MTYyNDkzNDA5MH0.cjq0V2H7ngW1EQ4cMydhA6qCWaqZWHSUIlM4AYQCiho
+@instructor = eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjcsImV4cCI6MTYyNDg5ODU0N30.3FdmNDXxFLtMr8GzhkmvpQOVkm7d7i1nOUBDfqE_zkA
 ###
 
 
@@ -30,7 +25,7 @@ Authorization: Bearer {{instructor}}
 
 //////////////////// POST A NEW COURSE ///////////////////
 POST http://localhost:8000/api/courses/
-Authorization: Bearer {{instructor}}
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjksImV4cCI6MTYyNDkzNjIzNX0.RHFYP9MQKXp1JPZWI8YnwWwLDjevloBcNaL2DRpOw60
 Content-Type: application/json
 
 {
@@ -84,10 +79,10 @@ POST http://localhost:8000/api/auth/register/
 Content-Type: application/json
 
 {
-  "fullName": "abubakar siddique",
-  "email": "abz3@email.com",
+  "fullName": "Rizwan A",
+  "email": "riz123@email.com",
   "profileImage": "image.jpg",
-  "username": "abz3",
+  "username": "riz12",
   "role": "INS",
   "password": "pass",
   "passwordConfirmation": "pass",
@@ -101,9 +96,10 @@ POST http://localhost:8000/api/auth/login/
 Content-Type: application/json
 
 {
-    "email": "abs@email.com",
+    "email": "riz123@email.com",
     "password": "pass"
 }
+
 ###
 
 //////////////////// GET USER DETAILS ///////////////////
@@ -212,13 +208,13 @@ Content-Type: application/json
 
 
 ### get a lesson id on course  
-Get http://127.0.0.1:8000/api/courses/1/comments/
+Get http://127.0.0.1:8000/api/courses/2/comments/
 Authorization: Bearer {{learner}}
 
 
 ###
-DELETE http://127.0.0.1:8000/api/courses/6/comments/11/
-Authorization: Bearer {{learner}}
+DELETE http://127.0.0.1:8000/api/courses/2/lessons/6/
+Authorization: Bearer {{instructor}}
 
 
 ###
@@ -231,6 +227,15 @@ Content-Type: application/json
   "lesson": 6
 }
 
+###
+POST http://127.0.0.1:8000/api/courses/8/comments/
+Authorization: Bearer {{learner}}
+Content-Type: application/json
+
+{
+  
+}
+
 
 ###
 POST http://127.0.0.1:8000/api/courses/4/favorite/
@@ -238,4 +243,4 @@ Authorization: Bearer {{learner}}
 
 
 ###
-GET http://127.0.0.1:8000/api/auth/profile/5/
+GET http://127.0.0.1:8000/api/auth/profile/3/
