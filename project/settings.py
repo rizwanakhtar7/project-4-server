@@ -9,6 +9,12 @@ https://docs.djangoproject.com/en/3.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
+import os
+from pathlib import Path
+from dotenv import load_dotenv
+import dj_database_url
+load_dotenv()
+
 
 from pathlib import Path
 
@@ -20,7 +26,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-1bgz@oye&jh@x=+!qj$_y$)t2^)(u#xpj)lvd(7pszawuz)o#0'
+if str(os.getenv('ENVIRONMENT')) == 'development':
+    SECRET_KEY = 'django-insecure-1bgz@oye&jh@x=+!qj$_y$)t2^)(u#xpj)lvd(7pszawuz)o#0' # should be whatever your original key was
+else:
+    SECRET_KEY = str(os.getenv('SECRET_KEY'))
+
+
+# SECRET_KEY = 'django-insecure-1bgz@oye&jh@x=+!qj$_y$)t2^)(u#xpj)lvd(7pszawuz)o#0'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -75,15 +87,26 @@ WSGI_APPLICATION = 'project.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
-
-DATABASES = { 
-    'default': {
+DATABASES = {}
+if str(os.getenv('ENVIRONMENT')) == 'development':
+    DATABASES['default'] =  {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'learn-db',
+        'NAME': 'learn-db', 
         'HOST': 'localhost',
         'PORT': 5432
     }
-}
+else:
+    DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
+
+
+# DATABASES = { 
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': 'learn-db',
+#         'HOST': 'localhost',
+#         'PORT': 5432
+#     }
+# }
 
 
 # Password validation
