@@ -13,6 +13,7 @@ django-filter = "*"
 pyjwt = "*"
 python-dotenv = "*"
 dj-database-url = "*"
+django-on-heroku = "*"
 
 [dev-packages]
 pylint = "*"
