@@ -1,28 +1,8 @@
 # Project 4: E-Learn - created using Django & React
-## Timeframe : *10 Days*
-### Goal: 
+## Timeframe : *7 Days*
 
-Build an application using Django, PostgresSQL, React full-stack application
-
-## Technologies Applied:
-
-- HTML5
-- CSS3
-- React
-- Git
-- GitHub
-- Google Fonts
-- Animate.css library
-- Cloudinary
-- PostgreSQL
-- Django
-- Python
-- Heroku and Netlify
-- Excalidraw
-
-## Overview:
-
-This was my final project at General Assembly, given 7 days to build a full stack website using Django, PostgreSQL and React. As a pair, we decided to go for a E-Learn application aimed at anyone who wants to learn in subject areas Computing, English, Science and Maths. The website allows a user to register as an Instructor or Learner. The Instructor can post courses, lessons, assessments whilst a learner can take tests and view lessons to indicate how strong they are in a lesson.
+## Overview
+This was my final project at General Assembly, given 7 days to build a full-stack website using Django, PostgreSQL and React. As a pair, Abubakar and I decided to go for a E-Learn application aimed at anyone who wants to learn in subject areas Computing, English, Science and Maths. The website allows a user to register as an instructor or learner. The instructor can post courses, lessons, assessments whilst a learner can take tests and view lessons to indicate how strong they are in a lesson.
 
 ![Deployed App](image/deployed-app.png)
 
@@ -30,9 +10,7 @@ This was my final project at General Assembly, given 7 days to build a full stac
 
 link to front-end [click here](https://github.com/rizwanakhtar7/project-4-client/tree/main)
 
-
-### Project Brief
-
+### Brief
 - Build a full-stack application by making your own backend and your own front-end.
 
 - Use a Python Django API using Django REST Framework to serve your data from a Postgres database.
@@ -48,14 +26,28 @@ link to front-end [click here](https://github.com/rizwanakhtar7/project-4-client
 - Be deployed online so it’s publicly accessible.
 
 
-### Application Navigation
+## Technologies Applied
+- HTML5
+- CSS3
+- React
+- Git
+- GitHub
+- Google Fonts
+- Animate.css library
+- Cloudinary
+- PostgreSQL
+- Django
+- Python
+- Heroku and Netlify
+- Excalidraw
 
-- At the home page you can Login as an existing user or navigate to Register as an Instructor or Learner. 
+### Approach
+- At the home page you can Login as an existing user or navigate to Register as an instructor or learner. 
 
-- Once logged in you can navigate to the courses main page to view all courses, or filter by a given subject such as Maths. The user can then click on courses to view all the lessons in a course and then individual lessons details page which will contain a video of the lesson, quiz to test your knowledge and content of the lesson. You can also post a comment where an Instructor can respond to  questions / feedback you have.
+- Once logged in you can navigate to the courses main page to view all courses, or filter by a given subject such as Maths. The user can then click on courses to view all the lessons in a course and then individual lessons details page which will contain a video of the lesson, quiz to test your knowledge and content of the lesson. You can also post a comment where an instructor can respond to  questions/ feedback you have.
 
-### Day One / Two:
-* Pseudocoding and Sign off with steps ERD Diagram and mockups:
+### Day One/ Two:
+* Pseudo-coding and Sign off with steps ERD Diagram and mockups:
 
  Drawing mockups of the different pages helped visualise the end application. Designs for how the dashboard would look like along with quiz, lessons, courses index & home page(see below):
 
@@ -68,14 +60,15 @@ link to front-end [click here](https://github.com/rizwanakhtar7/project-4-client
 
 ![ERD](image/erd.png)
 
-Once we got the sign off, we successfully had the weekend to jump into coding. Abubakr & I decided to use trello to organise our responsibilities. Due to the complexity of our application, we both demonstrated flexibility in helping each other to jump on more urgent tasks and priotise goals.
+Once we got the sign off, we successfully had the weekend to jump into coding. Abubakr & I decided to use Trello to organise our responsibilities. Due to the complexity of our application, we both demonstrated flexibility in helping each other to jump on more urgent tasks and priotise goals.
 
-At First we worked together on setting up the project on GitHub and migrating the model changes to the database.
+![trello board](image/project-4.png)
+
+At first, we worked together on setting up the project on GitHub and migrating the model changes to the database.
 
 Later we split up to work on separate tasks throughout the remaining days.
 
-### Day Three / Four:
-
+### Day Three/ Four:
 - Together completed & migrated the models to the database using Django.  
 
 We split up to work on the following tasks:
@@ -112,13 +105,13 @@ We split up to work on the following tasks:
 
 We completed the controllers and all the endpoints and spent time testing these in the client.http. Also the rating review I spent testing to make sure an average would correctly show for each course.
 
-### Day six / seven:
+### Day Six/ Seven:
 
 Having completed the MVP of the backend I moved onto the frontend working on:
 - Sidenavbar to create links to the different pages.
 - Courses Index to display all courses with the lessons along with the rating.
 - Filter functionality to filter the courses by subject areas.
-- Then I finished of by having an array of random motivational quotes for the dashboard.
+- Then I finished off by having an array of random motivational quotes for the dashboard.
 
 ```
   const quotes = [
@@ -138,34 +131,33 @@ Then a random quote function which gets called on page load:
 
 
 ### Wins
-- The biggest win was definately becoming comfortable with Django and how to migrate and create models, controllers and test endpoints. Our project was complicated in terms of the models  so we had to often go back to the backend at some point to make alterations to the models. I had alot of fun experiencing this and become fluent juggling between front-end and back-end.
+- The biggest win was definitely that I became comfortable with Django and how to migrate and create models, controllers and test endpoints. Our project was complicated in terms of the models  so we had to often go back to the backend at some point to make alterations to the models. I had alot of fun experiencing this and become fluent juggling between front-end and back-end.
 
 - I also was really impressed with how we managed to implement certain functionalites such as the number of stars for a course and using an average to calculate this.
 
-- To learn Django / Python in one week and implement it in a project along with React
+- Learning Django/ Python in one week and implement it in a project along with React
 
-### Challenges / Bugs
+### Challenges
 - Implementing models in Django with our concept in 1 week.
 
-- Gathering Content for our different subjects.
+- Gathering content for our different subjects.
 
-- Posting Assessments with questions, answers with correct answer.
+- Posting assessments with questions, answers with correct answer in the backend.
 
 - Displaying IDE for a certain language in the computing course. 
 
+### Bugs
 - For the Dashboard - a non-logged in user can view this and shows a blank name plus a broken image(see below):
 
 ![Dashboard bug](image/dashboard-bug.png)
 
-
-
-### Features to Implement 
-- Giving Instructors ability to post assessments
-- Styling for Assessments with model to make it more visually attractive
-- Sharing Results on social media
+### new features to implement 
+- Giving Instructors ability to post assessments.
+- Styling for Assessments with model to make it more visually attractive.
+- Sharing Results on social media.
 - Implementing the Dashboard to allow the users to have motivational quotes and view all favourited courses, all courses currently started making it more personalised.
-- Badges for Learners to show points for courses
-- Having Instructor list pages with rating/ 
+- Badges for Learners to show points for courses.
+- Having the instructor with their rating accordingly.
 - Implementing rating feature so a learner can post a rating for a course after watching, then the average is calculated on the courses index page.
 
 
