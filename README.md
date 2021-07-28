@@ -72,7 +72,6 @@ Later we split up to work on separate tasks throughout the remaining days.
 - Together completed & migrated the models to the database using Django.  
 
 We split up to work on the following tasks:
-
 - Abubakr - User roles, JWT authentication, authentication for learners and instructors to make sure learners cannot delete, post courses, lessons & assessments.
 
 - I worked on the endpoints which would be consumed by the frontend. Additionally a 'rating' functionality which would give learners ability to give a rating for each course. The average would be shown on the course index page. In the backend I created a many to many relationship on the course table (see code below): 
@@ -100,13 +99,10 @@ We split up to work on the following tasks:
 
 ![Serializer image](image/python-models.png)
 
-
 ### Day Five:
-
 We completed the controllers and all the endpoints and spent time testing these in the client.http. Also the rating review I spent testing to make sure an average would correctly show for each course.
 
 ### Day Six/ Seven:
-
 Having completed the MVP of the backend I moved onto the frontend working on:
 - Sidenavbar to create links to the different pages.
 - Courses Index to display all courses with the lessons along with the rating.
@@ -135,7 +131,7 @@ Then a random quote function which gets called on page load:
 
 - I also was really impressed with how we managed to implement certain functionalites such as the number of stars for a course and using an average to calculate this.
 
-- Learning Django/ Python in one week and implement it in a project along with React
+- Learning Django/Python in one week and implement it in a project along with React.
 
 ### Challenges
 - Implementing models in Django with our concept in 1 week.
@@ -151,7 +147,7 @@ Then a random quote function which gets called on page load:
 
 ![Dashboard bug](image/dashboard-bug.png)
 
-### new features to implement 
+### New Features To Implement 
 - Giving Instructors ability to post assessments.
 - Styling for Assessments with model to make it more visually attractive.
 - Sharing Results on social media.
